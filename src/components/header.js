@@ -37,6 +37,7 @@ const MainLink = styled(Link)`
   color: ${ON_SURFACE};
   opacity: ${HIGH_EMPHASIS};
   text-decoration: none;
+  cursor: pointer;
   :hover {
     color: ${BASE_TEXT_HOVER_COLOR};
   }
@@ -45,8 +46,9 @@ const MainLink = styled(Link)`
 const User = styled.h5`
   margin: 0;
   color: ${PRIMARY};
+  cursor: pointer;
   :hover {
-    color: ${LINK_TEXT_HOVER_COLOR};
+    color: ${PRIMARY_BACKGROUND};
   }
 `
 

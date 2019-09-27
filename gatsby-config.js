@@ -18,11 +18,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Progressive Web App`,
-        short_name: `PWA`,
+        name: `Progressive Web App - Context`,
+        short_name: `PWA Context`,
         start_url: `/`,
         background_color: `#121212`,
-        theme_color: `#82C6F6`,
+        theme_color: `#16242C`,
         display: `standalone`,
         icon: `src/images/rocket.png`, // This path is relative to the root of the site.
       },

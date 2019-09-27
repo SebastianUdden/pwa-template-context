@@ -7,6 +7,7 @@ import {
   ON_SURFACE,
   HIGH_EMPHASIS,
   DP6,
+  SURFACE_ACTIVE,
 } from "../../constants/theme"
 import { MEDIA_MIN_MEDIUM } from "../../constants/sizes"
 
@@ -15,8 +16,10 @@ const Label = styled.label`
 `
 
 const StyledInput = styled.input`
+  -webkit-appearance: none;
+  border-radius: 0;
   outline: none;
-  background: inherit;
+  background: ${SURFACE_ACTIVE};
   color: ${ON_SURFACE};
   border: none;
   border-bottom: 2px solid

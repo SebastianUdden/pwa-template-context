@@ -5,12 +5,12 @@ import PropTypes from "prop-types"
 import { LARGE } from "../constants/sizes"
 import {
   BASE_TEXT_HOVER_COLOR,
-  LINK_TEXT_HOVER_COLOR,
   ON_SURFACE,
   HIGH_EMPHASIS,
   PRIMARY,
   DP6,
   BACKGROUND_ACTIVE,
+  PRIMARY_BACKGROUND,
 } from "../constants/theme"
 import { useUser } from "../contexts/UserContext"
 

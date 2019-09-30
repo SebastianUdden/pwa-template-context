@@ -54,3 +54,22 @@ export const LOGIN_FIELDS = [
     validationRegex: /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
   },
 ]
+
+export const SETTINGS_FIELDS = [
+  {
+    fieldName: "username",
+    type: "text",
+    label: "Username",
+    placeholder: "Enter optional username...",
+    required: false,
+  },
+  {
+    fieldName: "password",
+    label: "Password",
+    placeholder: "Enter strong password...",
+    required: false,
+    validationErrorMessage:
+      "Weak password, should be at least 8 letters and consist of alphabetical, numeric and special characters",
+    validationRegex: /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+  },
+]

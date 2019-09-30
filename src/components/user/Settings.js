@@ -3,6 +3,60 @@ import { useUser } from "../../contexts/UserContext"
 import { FieldHint, Wrapper, Button, Em, FlexWrapper } from "./common"
 import { ERROR, ON_ERROR } from "../../constants/theme"
 import Input from "../ui/Input"
+import { SETTINGS_FIELDS } from "../../constants/fields"
+
+const Displayfield = ({ section, field }) => (
+  <Wrapper>
+    <FieldHint>{field.label}</FieldHint>
+    <FieldHint>
+      <Em>{field.value}</Em>
+    </FieldHint>
+  </Wrapper>
+)
+
+const EditField = ({ section, field, onValue }) => {
+  const [showInput, setShowInput] = useState(false)
+  const { user, tempUser, setUser } = useUser()
+
+  return (
+    <Wrapper>
+      <FieldHint>
+        {field.label}{" "}
+        {!showInput && <Em onClick={() => setShowInput(true)}>&#x270E;</Em>}
+        {showInput && (
+          <>
+            <Em
+              onClick={() => {
+                setUser({
+                  ...user,
+                  [field.fieldName]: tempUser[field.fieldName],
+                })
+                setShowInput(false)
+              }}
+            >
+              &#x2713;
+            </Em>{" "}
+            <Em onClick={() => setShowInput(false)}>&times;</Em>
+          </>
+        )}
+      </FieldHint>
+      {!showInput && (
+        <>
+          <FieldHint>
+            <Em>{field.value}</Em>
+          </FieldHint>
+        </>
+      )}
+      {showInput && (
+        <Input
+          section="settings"
+          field={{ ...field, label: "" }}
+          onValue={onValue}
+        />
+      )}
+    </Wrapper>
+  )
+}
 
 const Settings = () => {
   const [showConfirmRemoval, setShowConfirmRemoval] = useState(false)
@@ -12,51 +66,17 @@ const Settings = () => {
     <Wrapper>
       {user.email && user.password && (
         <>
-          <FieldHint>
-            Username:<Em>{user.username}</Em>
-          </FieldHint>
-          {/* <Input
+          <Displayfield
             section="settings"
-            field={{
-              fieldName: "username",
-              type: "text",
-              label: "Username",
-              placeholder: "Enter optional username...",
-              required: false,
-            }}
-            onValue={value => setTempUser("username", value)}
-          /> */}
-          <FieldHint>
-            Email:<Em>{user.email}</Em>
-          </FieldHint>
-          {/* <Input
-            section="settings"
-            field={{
-              fieldName: "email",
-              type: "text",
-              label: "E-mail",
-              placeholder: "Enter email...",
-              required: false,
-            }}
-            onValue={value => setTempUser("email", value)}
-          /> */}
-          <FieldHint>
-            Password:<Em>{user.password}</Em>
-          </FieldHint>
-          {/* <Input
-            section="settings"
-            field={{
-              fieldName: "password",
-              type: "password",
-              label: "Password",
-              placeholder: "Enter strong password...",
-              required: true,
-              validationErrorMessage:
-                "Weak password, should be at least 8 letters and consist of alphabetical, numeric and special characters",
-              validationRegex: /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-            }}
-            onValue={value => setTempUser("password", value)}
-          /> */}
+            field={{ label: "E-mail", value: user.email }}
+          />
+          {SETTINGS_FIELDS.map(field => (
+            <EditField
+              section="settings"
+              field={{ ...field, value: user[field.fieldName] }}
+              onValue={value => setTempUser(field.fieldName, value)}
+            />
+          ))}
           {!showConfirmRemoval && (
             <Button onClick={() => setShowConfirmRemoval(true)}>
               Remove account

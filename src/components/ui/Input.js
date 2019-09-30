@@ -66,9 +66,12 @@ const isFieldValid = ({ field, value }) => {
 }
 
 class Input extends Component {
-  state = {
-    value: "",
-    status: "default",
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: props.field.value || "",
+      status: "default",
+    }
   }
 
   validate = () => {
@@ -125,6 +128,12 @@ class Input extends Component {
     ) {
       this.setState({ status: "error" })
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      value: this.props.field.value,
+    })
   }
 
   render() {

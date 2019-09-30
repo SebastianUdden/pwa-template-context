@@ -99,7 +99,6 @@ class Input extends Component {
 
     if (inputValue.length === 0) {
       this.setState({ status: "default" })
-      return
     }
 
     if (

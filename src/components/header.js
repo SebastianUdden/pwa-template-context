@@ -9,13 +9,13 @@ import {
   HIGH_EMPHASIS,
   PRIMARY,
   DP6,
-  BACKGROUND_ACTIVE,
   PRIMARY_BACKGROUND,
+  BACKGROUND,
 } from "../constants/theme"
 import { useUser } from "../contexts/UserContext"
 
 const Wrapper = styled.header`
-  background: ${BACKGROUND_ACTIVE};
+  background: ${BACKGROUND};
   box-shadow: ${DP6};
   margin-bottom: 1.45rem;
 `
@@ -25,7 +25,7 @@ const Head = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: ${LARGE};
+  max-width: ${LARGE}px;
   padding: 1.45rem 1.0875rem;
 `
 

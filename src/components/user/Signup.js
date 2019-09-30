@@ -29,6 +29,7 @@ const Signup = ({ fields }) => {
         <ErrorMessage>Passwords are invalid or do not match...</ErrorMessage>
       )}
       <Button
+        type="submit"
         onClick={() => {
           setShowMatchingPasswordError(user.password !== user.repeatPassword)
           const signedUp = validateForm(inputRefs)

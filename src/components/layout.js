@@ -12,13 +12,13 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
-import { LARGE } from "../constants/sizes"
+import { SMALL } from "../constants/sizes"
 import { BASE_TEXT_COLOR, BACKGROUND } from "../constants/theme"
 import { UserProvider } from "../contexts/UserContext"
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  max-width: ${LARGE};
+  max-width: ${SMALL}px;
   padding: 0px 1.0875rem 1.45rem;
   padding-top: 0;
   color: ${BASE_TEXT_COLOR};

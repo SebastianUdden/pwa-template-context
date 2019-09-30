@@ -6,6 +6,7 @@ import {
   FADED_TEXT_COLOR,
   ERROR,
   DP6,
+  BACKGROUND_ACTIVE,
 } from "../../constants/theme"
 
 export const Wrapper = styled.div`
@@ -25,6 +26,9 @@ export const Button = styled.button`
   box-shadow: ${DP6};
   text-transform: uppercase;
   cursor: pointer;
+  :hover {
+    background-color: ${BACKGROUND_ACTIVE};
+  }
 `
 
 export const FieldHint = styled.p`

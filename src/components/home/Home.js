@@ -26,6 +26,8 @@ const Em = styled.em`
 const SVGWrapper = styled.div`
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
 `
 

@@ -32,7 +32,7 @@ const SVGWrapper = styled.div`
 `
 
 const Home = () => {
-  const { user, clearUser, setPage } = useUser()
+  const { user, setPage } = useUser()
 
   return (
     <Wrapper>
@@ -46,7 +46,6 @@ const Home = () => {
       </P>
       <SVGWrapper
         onClick={() => {
-          clearUser()
           setPage("signup")
         }}
       >

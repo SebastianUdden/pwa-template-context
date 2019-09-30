@@ -61,7 +61,7 @@ const Header = ({ siteTitle }) => {
         <Home>
           <MainLink onClick={() => setPage("home")}>{siteTitle}</MainLink>
         </Home>
-        <User>{user.signedUp && (user.username || user.email)}</User>
+        <User>{user.loggedIn && (user.username || user.email)}</User>
       </Head>
     </Wrapper>
   )

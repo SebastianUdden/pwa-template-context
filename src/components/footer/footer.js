@@ -1,11 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import {
-  ON_SURFACE,
-  SURFACE_ACTIVE,
   DP6,
   BACKGROUND,
   BACKGROUND_ACTIVE,
+  ON_BACKGROUND,
 } from "../../constants/theme"
 
 const Wrapper = styled.footer`
@@ -25,7 +24,7 @@ const ButtonContainer = styled.div`
 const Item = styled.button`
   border: none;
   background-color: ${BACKGROUND};
-  color: ${ON_SURFACE};
+  color: ${ON_BACKGROUND};
   width: 100%;
   text-transform: uppercase;
   box-shadow: ${DP6};

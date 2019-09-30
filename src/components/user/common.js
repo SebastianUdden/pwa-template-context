@@ -7,6 +7,7 @@ import {
   ERROR,
   DP6,
   BACKGROUND_ACTIVE,
+  PRIMARY,
 } from "../../constants/theme"
 
 export const Wrapper = styled.div`
@@ -17,10 +18,10 @@ export const Wrapper = styled.div`
 `
 
 export const Button = styled.button`
-  margin: 1rem 0;
+  margin: 1rem 0.2rem;
   padding: 1rem;
-  background-color: ${BACKGROUND};
-  color: ${ON_BACKGROUND};
+  background-color: ${p => p.backgroundColor || BACKGROUND};
+  color: ${p => p.color || ON_BACKGROUND};
   border: none;
   width: 100%;
   box-shadow: ${DP6};
@@ -31,6 +32,11 @@ export const Button = styled.button`
   }
 `
 
+export const Em = styled.em`
+  color: ${PRIMARY};
+  font-style: normal;
+`
+
 export const FieldHint = styled.p`
   margin: 0;
   color: ${FADED_TEXT_COLOR};
@@ -38,4 +44,8 @@ export const FieldHint = styled.p`
 
 export const ErrorMessage = styled(FieldHint)`
   color: ${ERROR};
+`
+
+export const FlexWrapper = styled.div`
+  display: flex;
 `

@@ -10,9 +10,29 @@ import {
   SURFACE_ACTIVE,
 } from "../../constants/theme"
 import { MEDIA_MIN_MEDIUM } from "../../constants/sizes"
+import { SVG } from "../svg/svg"
+import { eyeHide } from "../../svgs/eye-hide"
+import { eyeShow } from "../../svgs/eye-show"
 
 const Label = styled.label`
   opacity: ${HIGH_EMPHASIS};
+`
+
+const InputWrapper = styled.div`
+  position: relative;
+`
+
+const InvisibleButton = styled.button`
+  position: absolute;
+  top: 0.8rem;
+  right: 0.5rem;
+  background: ${SURFACE_ACTIVE};
+  color: ${FADED_TEXT_COLOR};
+  border: none;
+  padding: 0.3rem 0rem 0.3rem 0.3rem;
+  margin: 0;
+  height: 2rem;
+  outline: none;
 `
 
 const StyledInput = styled.input`
@@ -71,6 +91,9 @@ class Input extends Component {
     this.state = {
       value: props.field.value || "",
       status: "default",
+      type: Array.isArray(props.field.type)
+        ? props.field.type[0]
+        : props.field.type,
     }
   }
 
@@ -147,17 +170,38 @@ class Input extends Component {
             {field.label} {field.required && `*`}
           </Label>
         )}
-        <StyledInput
-          id={inputId}
-          type={field.type}
-          maxlength={field.maxLength}
-          required={field.required}
-          placeholder={field.placeholder}
-          onChange={this.handleInputChange}
-          onBlur={this.handleInputBlur}
-          value={value}
-          status={status}
-        />
+        <InputWrapper>
+          <StyledInput
+            id={inputId}
+            type={this.state.type}
+            maxlength={field.maxLength}
+            required={field.required}
+            placeholder={field.placeholder}
+            onChange={this.handleInputChange}
+            onBlur={this.handleInputBlur}
+            value={value}
+            status={status}
+          />
+          {this.props.field && Array.isArray(this.props.field.type) && (
+            <InvisibleButton
+              onClick={() => {
+                this.setState({
+                  type:
+                    this.props.field.type[0] === this.state.type
+                      ? this.props.field.type[1]
+                      : this.props.field.type[0],
+                })
+              }}
+            >
+              {this.state.type === "password" && (
+                <SVG color={FADED_TEXT_COLOR} {...eyeShow} size={24} />
+              )}
+              {this.state.type !== "password" && (
+                <SVG color={FADED_TEXT_COLOR} {...eyeHide} size={24} />
+              )}
+            </InvisibleButton>
+          )}
+        </InputWrapper>
         {status === "error" ? (
           <ErrorMessage>{field.validationErrorMessage}</ErrorMessage>
         ) : (

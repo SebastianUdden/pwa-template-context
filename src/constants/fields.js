@@ -21,7 +21,7 @@ export const SIGNUP_FIELDS = [
   },
   {
     fieldName: "password",
-    type: "password",
+    type: ["password", "text"],
     label: "Password",
     placeholder: "Enter strong password...",
     required: true,
@@ -33,7 +33,7 @@ export const SIGNUP_FIELDS = [
   },
   {
     fieldName: "repeatPassword",
-    type: "password",
+    type: ["password", "text"],
     placeholder: "Repeat strong password...",
     required: true,
     validationErrorMessage: "",
@@ -52,7 +52,7 @@ export const LOGIN_FIELDS = [
   },
   {
     fieldName: "loginPassword",
-    type: "password",
+    type: ["password", "text"],
     label: "Password",
     placeholder: "Enter your password...",
     required: true,
@@ -70,6 +70,7 @@ export const SETTINGS_FIELDS = [
   },
   {
     fieldName: "password",
+    type: ["password", "text"],
     label: "Password",
     placeholder: "Enter strong password...",
     required: false,

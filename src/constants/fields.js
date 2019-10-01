@@ -1,4 +1,7 @@
 /* eslint no-useless-escape: 0 */
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#:;_\-\$%\^&\*])(?=.{8,})/
+
 export const SIGNUP_FIELDS = [
   {
     fieldName: "username",
@@ -14,7 +17,7 @@ export const SIGNUP_FIELDS = [
     placeholder: "Enter valid e-mail...",
     required: true,
     validationErrorMessage: "Wrong format, should be johndoe@email.com",
-    validationRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    validationRegex: EMAIL_REGEX,
   },
   {
     fieldName: "password",
@@ -23,16 +26,18 @@ export const SIGNUP_FIELDS = [
     placeholder: "Enter strong password...",
     required: true,
     validationErrorMessage:
-      "Weak password, should be at least 8 letters and consist of alphabetical, numeric and special characters",
-    validationRegex: /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Weak password, strong passwords must be at least 8 letters and consist of alphabetical, numeric and special characters (!@#:_-%^&).",
+    validationRegex: PASSWORD_REGEX,
+    fieldHelperText:
+      "Strong passwords should be at least 8 letters and consist of alphabetical, numeric and special characters (!@#:;_-%^&).",
   },
   {
     fieldName: "repeatPassword",
     type: "password",
-    placeholder: "Repeat password...",
+    placeholder: "Repeat strong password...",
     required: true,
     validationErrorMessage: "",
-    validationRegex: /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+    validationRegex: PASSWORD_REGEX,
   },
 ]
 
@@ -43,7 +48,7 @@ export const LOGIN_FIELDS = [
     label: "E-mail",
     placeholder: "Enter your e-mail...",
     required: true,
-    validationRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    validationRegex: EMAIL_REGEX,
   },
   {
     fieldName: "loginPassword",
@@ -51,7 +56,7 @@ export const LOGIN_FIELDS = [
     label: "Password",
     placeholder: "Enter your password...",
     required: true,
-    validationRegex: /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+    validationRegex: PASSWORD_REGEX,
   },
 ]
 
@@ -70,6 +75,6 @@ export const SETTINGS_FIELDS = [
     required: false,
     validationErrorMessage:
       "Weak password, should be at least 8 letters and consist of alphabetical, numeric and special characters",
-    validationRegex: /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+    validationRegex: PASSWORD_REGEX,
   },
 ]

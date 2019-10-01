@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useUser } from "../../contexts/UserContext"
 import { FieldHint, Wrapper, Button, Em, FlexWrapper } from "./common"
-import { ERROR, ON_ERROR } from "../../constants/theme"
+import { ON_ERROR, ERROR_BACKGROUND } from "../../constants/theme"
 import Input from "../ui/Input"
 import { SETTINGS_FIELDS } from "../../constants/fields"
 
@@ -88,7 +88,7 @@ const Settings = () => {
                 Cancel
               </Button>
               <Button
-                backgroundColor={ERROR}
+                backgroundColor={ERROR_BACKGROUND}
                 color={ON_ERROR}
                 onClick={() => clearUser()}
               >

@@ -43,7 +43,7 @@ export const SIGNUP_FIELDS = [
 
 export const LOGIN_FIELDS = [
   {
-    fieldName: "loginEmail",
+    fieldName: "email",
     type: "email",
     label: "E-mail",
     placeholder: "Enter your e-mail...",
@@ -51,7 +51,7 @@ export const LOGIN_FIELDS = [
     validationRegex: EMAIL_REGEX,
   },
   {
-    fieldName: "loginPassword",
+    fieldName: "password",
     type: ["password", "text"],
     label: "Password",
     placeholder: "Enter your password...",

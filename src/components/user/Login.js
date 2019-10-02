@@ -25,15 +25,17 @@ const Login = ({ fields }) => {
           {fields.map(field => (
             <Input
               section="login"
-              field={field}
+              field={{ ...field, value: localStorage.getItem(field.fieldName) }}
               onValue={value => setTempUser(field.fieldName, value)}
             />
           ))}
           <Button
             onClick={() => {
               if (
-                tempUser.loginEmail === user.email &&
-                tempUser.loginPassword === user.password
+                (tempUser.email === user.email &&
+                  tempUser.password === user.password) ||
+                (localStorage.getItem("email") === user.email &&
+                  localStorage.getItem("password"))
               ) {
                 setUser({ ...user, loggedIn: true })
                 setPage("home")

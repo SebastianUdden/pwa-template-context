@@ -8,7 +8,6 @@ import {
   Button,
   Em,
   FlexWrapper,
-  storeUser,
 } from "./common"
 import { ERROR, ON_ERROR } from "../../constants/theme"
 
@@ -86,7 +85,9 @@ const Signup = ({ fields }) => {
               const signedUp = validateForm(inputRefs)
               if (signedUp && tempUser.password === tempUser.repeatPassword) {
                 setPage("login")
-                storeUser(tempUser, localStorage.setItem)
+                localStorage.setItem("email", tempUser.email)
+                localStorage.setItem("password", tempUser.password)
+                localStorage.setItem("username", tempUser.username)
                 setUser(tempUser)
                 clearTempUser()
               } else if (user.password === user.repeatPassword) {

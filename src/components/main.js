@@ -15,25 +15,15 @@ const Body = styled.div`
   margin-bottom: 10vh;
 `
 
-const getValue = key => localStorage.getItem(key)
-
-const checkBoolean = string => {
-  if (string === "true" || string === "false") return true
-}
-
 const Main = () => {
   const { page, setPage, user, setUser } = useUser()
-
   useEffect(() => {
-    Object.keys(user)
-      .filter(getValue)
-      .map(key => {
-        const value = localStorage.getItem(key)
-        setUser({
-          ...user,
-          [key]: checkBoolean(value) ? value === "true" : value,
-        })
-      })
+    setUser({
+      username: localStorage.getItem("username") || "",
+      email: localStorage.getItem("email") || "",
+      password: localStorage.getItem("password") || "",
+      loggedIn: localStorage.getItem("loggedIn") === "true",
+    })
   }, [])
 
   return (

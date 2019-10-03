@@ -49,8 +49,3 @@ export const ErrorMessage = styled(FieldHint)`
 export const FlexWrapper = styled.div`
   display: flex;
 `
-
-export const storeUser = (user, setKey) =>
-  Object.keys(user).forEach(key => {
-    key !== "repeatPassword" && setKey(key, user[key])
-  })

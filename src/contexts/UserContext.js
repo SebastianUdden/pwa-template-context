@@ -8,25 +8,8 @@ import {
   SET_TEMP_USER,
 } from "../constants/context"
 
-var storage = (function() {
-  var uid = new Date()
-  var storage
-  var result
-  try {
-    ;(storage = window.localStorage).setItem(uid, uid)
-    result = storage.getItem(uid) == uid
-    storage.removeItem(uid)
-    return result && storage
-  } catch (exception) {}
-})()
-
-let initialState = {
-  user: {
-    username: "",
-    email: "",
-    password: "",
-    loggedIn: false,
-  },
+const initialState = {
+  user: {},
   tempUser: {},
   page: "home",
   clearUser: () => {},
@@ -34,24 +17,6 @@ let initialState = {
   setUser: () => {},
   setTempUser: () => {},
   setPage: () => {},
-}
-
-if (storage) {
-  initialState = {
-    user: {
-      username: localStorage.getItem("username") || "",
-      email: localStorage.getItem("email") || "",
-      password: localStorage.getItem("password") || "",
-      loggedIn: localStorage.getItem("loggedIn") || false,
-    },
-    tempUser: {},
-    page: "home",
-    clearUser: () => {},
-    clearTempUser: () => {},
-    setUser: () => {},
-    setTempUser: () => {},
-    setPage: () => {},
-  }
 }
 
 const UserContext = createContext(initialState)

@@ -1,14 +1,7 @@
 import React, { useState } from "react"
 import { useUser } from "../../contexts/UserContext"
 import Input from "../ui/Input"
-import {
-  Em,
-  Button,
-  Wrapper,
-  ErrorMessage,
-  FieldHint,
-  storeUser,
-} from "./common"
+import { Em, Button, Wrapper, ErrorMessage, FieldHint } from "./common"
 
 const Login = ({ fields }) => {
   const [invalidEntry, setInvalidEntry] = useState(false)
@@ -24,7 +17,10 @@ const Login = ({ fields }) => {
           </FieldHint>
           <Button
             onClick={() => {
-              storeUser({ ...user, loggedIn: false }, localStorage.setItem)
+              Object.keys(user).forEach(key => {
+                key !== "repeatPassword" && localStorage.setItem(key, user[key])
+              })
+              localStorage.setItem("loggedIn", false)
               setUser({ ...user, loggedIn: false })
             }}
           >
@@ -47,7 +43,11 @@ const Login = ({ fields }) => {
                 tempUser.email === user.email &&
                 tempUser.password === user.password
               ) {
-                storeUser({ ...user, loggedIn: true }, localStorage.setItem)
+                Object.keys(user).forEach(key => {
+                  key !== "repeatPassword" &&
+                    localStorage.setItem(key, user[key])
+                })
+                localStorage.setItem("loggedIn", true)
                 setUser({ ...user, loggedIn: true })
                 setPage("home")
                 return

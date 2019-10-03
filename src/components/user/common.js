@@ -50,7 +50,7 @@ export const FlexWrapper = styled.div`
   display: flex;
 `
 
-export const storeUser = user =>
+export const storeUser = (user, setKey) =>
   Object.keys(user).forEach(key => {
-    key !== "repeatPassword" && localStorage.setItem(key, user[key])
+    key !== "repeatPassword" && setKey(key, user[key])
   })

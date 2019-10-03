@@ -24,7 +24,7 @@ const Login = ({ fields }) => {
           </FieldHint>
           <Button
             onClick={() => {
-              storeUser({ ...user, loggedIn: false })
+              storeUser({ ...user, loggedIn: false }, localStorage.setItem)
               setUser({ ...user, loggedIn: false })
             }}
           >
@@ -47,7 +47,7 @@ const Login = ({ fields }) => {
                 tempUser.email === user.email &&
                 tempUser.password === user.password
               ) {
-                storeUser({ ...user, loggedIn: true })
+                storeUser({ ...user, loggedIn: true }, localStorage.setItem)
                 setUser({ ...user, loggedIn: true })
                 setPage("home")
                 return

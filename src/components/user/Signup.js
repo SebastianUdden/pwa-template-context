@@ -86,7 +86,7 @@ const Signup = ({ fields }) => {
               const signedUp = validateForm(inputRefs)
               if (signedUp && tempUser.password === tempUser.repeatPassword) {
                 setPage("login")
-                storeUser(tempUser)
+                storeUser(tempUser, localStorage.setItem)
                 setUser(tempUser)
                 clearTempUser()
               } else if (user.password === user.repeatPassword) {

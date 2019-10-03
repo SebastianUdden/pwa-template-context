@@ -8,6 +8,7 @@ import {
   Button,
   Em,
   FlexWrapper,
+  storeUser,
 } from "./common"
 import { ERROR, ON_ERROR } from "../../constants/theme"
 
@@ -80,11 +81,12 @@ const Signup = ({ fields }) => {
             type="submit"
             onClick={() => {
               setShowMatchingPasswordError(
-                user.password !== user.repeatPassword
+                tempUser.password !== tempUser.repeatPassword
               )
               const signedUp = validateForm(inputRefs)
-              if (signedUp && user.password === user.repeatPassword) {
+              if (signedUp && tempUser.password === tempUser.repeatPassword) {
                 setPage("login")
+                storeUser(tempUser)
                 setUser(tempUser)
                 clearTempUser()
               } else if (user.password === user.repeatPassword) {

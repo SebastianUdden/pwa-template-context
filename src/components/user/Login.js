@@ -1,7 +1,14 @@
 import React, { useState } from "react"
 import { useUser } from "../../contexts/UserContext"
 import Input from "../ui/Input"
-import { Em, Button, Wrapper, ErrorMessage, FieldHint } from "./common"
+import {
+  Em,
+  Button,
+  Wrapper,
+  ErrorMessage,
+  FieldHint,
+  storeUser,
+} from "./common"
 
 const Login = ({ fields }) => {
   const [invalidEntry, setInvalidEntry] = useState(false)
@@ -15,7 +22,12 @@ const Login = ({ fields }) => {
             You are already logged in as <Em>{user.username || user.email}</Em>,
             would you like log out?
           </FieldHint>
-          <Button onClick={() => setUser({ ...user, loggedIn: false })}>
+          <Button
+            onClick={() => {
+              storeUser({ ...user, loggedIn: false })
+              setUser({ ...user, loggedIn: false })
+            }}
+          >
             Log out
           </Button>
         </>
@@ -32,11 +44,10 @@ const Login = ({ fields }) => {
           <Button
             onClick={() => {
               if (
-                (tempUser.email === user.email &&
-                  tempUser.password === user.password) ||
-                (localStorage.getItem("email") === user.email &&
-                  localStorage.getItem("password"))
+                tempUser.email === user.email &&
+                tempUser.password === user.password
               ) {
+                storeUser({ ...user, loggedIn: true })
                 setUser({ ...user, loggedIn: true })
                 setPage("home")
                 return

@@ -11,10 +11,6 @@ import { combineReducer } from "./combineReducer"
 const user = (state = [], action) => {
   switch (action.type) {
     case SET_USER:
-      Object.keys(action.payload).map(key => {
-        key !== "repeatPassword" &&
-          localStorage.setItem(key, action.payload[key])
-      })
       return action.payload
     case CLEAR_USER:
       localStorage.clear()

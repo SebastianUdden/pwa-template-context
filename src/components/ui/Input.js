@@ -26,7 +26,7 @@ const InvisibleButton = styled.button`
   position: absolute;
   top: 0.8rem;
   right: 0.5rem;
-  background: ${SURFACE_ACTIVE};
+  background: transparent;
   color: ${FADED_TEXT_COLOR};
   border: none;
   padding: 0.3rem 0rem 0.3rem 0.3rem;

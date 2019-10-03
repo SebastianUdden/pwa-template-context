@@ -9,7 +9,12 @@ import {
 } from "../constants/context"
 
 const initialState = {
-  user: {},
+  user: {
+    username: localStorage.getItem("username") || "",
+    email: localStorage.getItem("email") || "",
+    password: localStorage.getItem("password") || "",
+    loggedIn: localStorage.getItem("loggedIn") || false,
+  },
   tempUser: {},
   page: "home",
   clearUser: () => {},

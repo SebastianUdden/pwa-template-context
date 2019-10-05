@@ -26,6 +26,8 @@ export const ON_BACKGROUND = "#FFFFFF"
 export const ON_SURFACE = "#FFFFFF"
 export const ON_ERROR = "#FFFFFF"
 
+export const TRANSITION_DURATION = 300
+
 export const HIGH_EMPHASIS = 0.87
 export const MEDIUM_EMPHASIS = 0.6
 export const DISABLED = 0.38

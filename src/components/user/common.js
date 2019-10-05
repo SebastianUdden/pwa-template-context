@@ -8,6 +8,7 @@ import {
   DP6,
   BACKGROUND_ACTIVE,
   PRIMARY,
+  HIGH_EMPHASIS,
 } from "../../constants/theme"
 
 export const Wrapper = styled.div`
@@ -48,4 +49,9 @@ export const ErrorMessage = styled(FieldHint)`
 
 export const FlexWrapper = styled.div`
   display: flex;
+`
+
+export const Span = styled.span`
+  opacity: ${HIGH_EMPHASIS};
+  color: ${ON_BACKGROUND};
 `

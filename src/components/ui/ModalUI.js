@@ -124,7 +124,8 @@ const ModalUI = ({ children, title, onClose, open }) => {
       setIsAnimating(false)
     }, TRANSITION_DURATION)
   }, [open])
-  return open
+
+  return typeof window !== "undefined" && open
     ? createPortal(
         <Overlay
           onClick={e => onOverlayClick(e, onClose)}

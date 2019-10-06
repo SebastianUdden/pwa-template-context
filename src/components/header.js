@@ -53,8 +53,9 @@ const User = styled.h5`
 `
 
 const Header = ({ siteTitle }) => {
-  const { user, setPage } = useUser()
-
+  const { user, tempUser, setPage } = useUser()
+  console.log(user)
+  console.log(tempUser)
   return (
     <Wrapper>
       <Head>

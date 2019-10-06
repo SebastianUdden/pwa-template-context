@@ -10,6 +10,7 @@ import {
   FlexWrapper,
 } from "./common"
 import { ERROR, ON_ERROR } from "../../constants/theme"
+import Modal from "../ui/Modal"
 
 const validateForm = inputRefs => {
   const results = inputRefs.map(ref => ref.current.validate())
@@ -17,6 +18,7 @@ const validateForm = inputRefs => {
 }
 
 const Signup = ({ fields }) => {
+  const [signedUp, setSignedUp] = useState(false)
   const [showConfirmRemoval, setShowConfirmRemoval] = useState(false)
   const [showMatchingPasswordError, setShowMatchingPasswordError] = useState(
     false
@@ -65,6 +67,7 @@ const Signup = ({ fields }) => {
         <>
           {fields.map((field, index) => (
             <Input
+              key={field.fieldName}
               ref={inputRefs[index]}
               section="signup"
               field={field}
@@ -82,21 +85,33 @@ const Signup = ({ fields }) => {
               setShowMatchingPasswordError(
                 tempUser.password !== tempUser.repeatPassword
               )
-              const signedUp = validateForm(inputRefs)
-              if (signedUp && tempUser.password === tempUser.repeatPassword) {
-                setPage("login")
+              const signUp = validateForm(inputRefs)
+              if (signUp && tempUser.password === tempUser.repeatPassword) {
+                setSignedUp(signUp)
                 localStorage.setItem("email", tempUser.email)
-                localStorage.setItem("password", tempUser.password)
                 localStorage.setItem("username", tempUser.username)
-                setUser(tempUser)
-                clearTempUser()
-              } else if (user.password === user.repeatPassword) {
-                return
+                localStorage.setItem("password", tempUser.password)
               }
             }}
           >
             Sign up
           </Button>
+          {signedUp && (
+            <Modal
+              title="Would you like to save your password locally?"
+              onConfirm={() => {
+                localStorage.setItem("auto-password", true)
+                setUser({ ...tempUser, password: "" })
+                clearTempUser()
+                setPage("login")
+              }}
+              onDeny={() => {
+                setUser(tempUser)
+                clearTempUser()
+                setPage("login")
+              }}
+            />
+          )}
         </>
       )}
     </Wrapper>

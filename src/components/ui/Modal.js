@@ -2,21 +2,20 @@ import React, { useState } from "react"
 import ModalUI from "./ModalUI"
 import { Button, Span } from "../user/common"
 
-const Modal = () => {
+const Modal = ({ title, description, onConfirm, onDeny }) => {
   const [modalOpen, setModalOpen] = useState(true)
 
   return (
     <>
-      <Button onClick={() => setModalOpen(true)}>Open Modal</Button>
       {modalOpen && (
         <ModalUI
-          title="Test modal"
+          title={title}
           onClose={() => {
             setModalOpen(false)
           }}
           open={modalOpen}
         >
-          <Span>Are you sure you want to close this modal?</Span>
+          <Span>{description}</Span>
           <div
             style={{
               display: "flex",
@@ -24,8 +23,22 @@ const Modal = () => {
               justifyContent: "center",
             }}
           >
-            <Button onClick={() => setModalOpen(false)}>CONFIRM</Button>
-            <Button onClick={() => setModalOpen(false)}>DENY</Button>
+            <Button
+              onClick={() => {
+                setModalOpen(false)
+                onConfirm()
+              }}
+            >
+              Yes
+            </Button>
+            <Button
+              onClick={() => {
+                setModalOpen(false)
+                onDeny()
+              }}
+            >
+              No
+            </Button>
           </div>
         </ModalUI>
       )}

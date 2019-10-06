@@ -61,7 +61,8 @@ const InnerModal = styled.div`
 const Header = styled.div`
   box-sizing: border-box;
   position: relative;
-  border-bottom: 1px solid ${FADED_TEXT_COLOR};
+  border-bottom: 1px solid
+    ${p => (p.hasTitle ? FADED_TEXT_COLOR : "transparent")};
   opacity: ${HIGH_EMPHASIS};
   display: flex;
   align-items: center;
@@ -123,7 +124,7 @@ const ModalUI = ({ children, title, onClose, open }) => {
     setTimeout(() => {
       setIsAnimating(false)
     }, TRANSITION_DURATION)
-  }, [open])
+  }, [open, setIsAnimating])
 
   return typeof window !== "undefined" && open
     ? createPortal(
@@ -133,7 +134,7 @@ const ModalUI = ({ children, title, onClose, open }) => {
         >
           <Wrapper>
             <InnerModal onClick={e => e.stopPropagation()}>
-              <Header>
+              <Header hasTitle={title}>
                 {title}
                 <Close onClick={onClose}>&times;</Close>
               </Header>

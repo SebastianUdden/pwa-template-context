@@ -10,7 +10,6 @@ import Footer from "./footer/footer"
 
 import { LOGIN_FIELDS, SIGNUP_FIELDS } from "../constants/fields"
 import { FOOTER_MENU } from "../constants/menus"
-import Modal from "./ui/Modal"
 
 const Body = styled.div`
   margin-bottom: 10vh;
@@ -26,13 +25,12 @@ const Main = () => {
       password: localStorage.getItem("password") || "",
       loggedIn: localStorage.getItem("loggedIn") === "true",
     })
-  }, [setUser])
+  }, [page])
 
   return (
     <>
       <SEO title="Home" />
       <Body>
-        {page === "home" && <Modal />}
         {page === "home" && <Home />}
         {page === "signup" && <Signup fields={SIGNUP_FIELDS} />}
         {page === "login" && <Login fields={LOGIN_FIELDS} />}

@@ -40,7 +40,9 @@ const Footer = ({ items }) => {
     <Wrapper>
       <ButtonContainer>
         {items.map(item => (
-          <Item onClick={() => item.onClick()}>{item.title}</Item>
+          <Item key={item.title} onClick={() => item.onClick()}>
+            {item.title}
+          </Item>
         ))}
       </ButtonContainer>
     </Wrapper>

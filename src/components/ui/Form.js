@@ -10,6 +10,7 @@ const Form = ({ section, title, formFields }) => {
         {formFields &&
           formFields.map((field, index) => (
             <FormInput
+              key={field.fieldName}
               ref={inputRefs[index]}
               section={section}
               field={field}

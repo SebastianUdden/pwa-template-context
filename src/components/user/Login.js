@@ -5,7 +5,14 @@ import { Em, Button, Wrapper, ErrorMessage, FieldHint } from "./common"
 
 const Login = ({ fields }) => {
   const [invalidEntry, setInvalidEntry] = useState(false)
-  const { user, tempUser, setUser, setTempUser, setPage } = useUser()
+  const {
+    user,
+    tempUser,
+    setUser,
+    setTempUser,
+    clearTempUser,
+    setPage,
+  } = useUser()
 
   return (
     <Wrapper>
@@ -22,6 +29,7 @@ const Login = ({ fields }) => {
               })
               localStorage.setItem("loggedIn", false)
               setUser({ ...user, loggedIn: false })
+              clearTempUser()
             }}
           >
             Log out
@@ -30,13 +38,22 @@ const Login = ({ fields }) => {
       )}
       {!user.loggedIn && (
         <>
-          {fields.map(field => (
-            <Input
-              section="login"
-              field={{ ...field, value: localStorage.getItem(field.fieldName) }}
-              onValue={value => setTempUser(field.fieldName, value)}
-            />
-          ))}
+          {fields.map(field => {
+            return (
+              <Input
+                section="login"
+                field={{
+                  ...field,
+                  value:
+                    field.fieldName !== "password" ||
+                    localStorage.getItem("auto-password") === "true"
+                      ? localStorage.getItem(field.fieldName)
+                      : "",
+                }}
+                onValue={value => setTempUser(field.fieldName, value)}
+              />
+            )
+          })}
           <Button
             onClick={() => {
               if (

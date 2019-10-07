@@ -67,15 +67,16 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70px;
+  min-height: 70px;
   margin-bottom: 1rem;
+  padding: 1rem 2rem 2rem 0.5rem;
 
   > h3 {
     margin: 0;
   }
 
   ${MEDIA_MAX_SMALL} {
-    height: 45px;
+    min-height: 45px;
     > h3 {
       margin-top: 1px;
     }
@@ -84,7 +85,7 @@ const Header = styled.div`
 
 const Close = styled.button`
   padding: 0;
-  margin: 0;
+  margin: -1rem -0.5rem;
   border: 0;
   position: absolute;
   cursor: pointer;

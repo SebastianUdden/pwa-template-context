@@ -37,7 +37,8 @@ const Home = () => {
   return (
     <Wrapper>
       <H1>
-        Hey <Em>{user.username || user.email || "buddy"}</Em>!
+        Hey{" "}
+        <Em>{(user.loggedIn && (user.username || user.email)) || "buddy"}</Em>!
       </H1>
       <P>
         This will be the base of many awesome apps! Try out react context with a

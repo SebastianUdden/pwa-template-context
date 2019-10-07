@@ -1,31 +1,53 @@
-import React from "react"
+import React, { PureComponent } from "react"
+import styled from "styled-components"
+import Input from "./Input"
 
-const Form = ({ section, title, formFields }) => {
-  const { setAddressValue } = useUser()
-  const inputRefs = formFields.map(() => useRef(null))
-  return (
-    <Form>
-      <Subtitle section={section}>{title}</Subtitle>
-      <FieldsWrapper>
-        {formFields &&
-          formFields.map((field, index) => (
-            <FormInput
-              key={field.fieldName}
-              ref={inputRefs[index]}
-              section={section}
-              field={field}
-              onValue={value => {
-                setFormValue(field.fieldName, value)
-              }}
-            />
-          ))}
-        <button
-          type="button"
-          onClick={() => inputRefs.forEach(ref => ref.current.validate())}
-        >
-          Continue
-        </button>
-      </FieldsWrapper>
-    </Form>
-  )
+const Subtitle = styled.label`
+  text-align: center;
+  margin: 1rem 0;
+`
+
+const FieldsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
+
+class Form extends PureComponent {
+  inputRefs = []
+
+  constructor(props) {
+    super(props)
+    this.inputRefs = props.formFields.map(() => React.createRef())
+  }
+
+  validate = () =>
+    this.inputRefs.reduce(
+      (isValid, ref) => ref.current.validate() && isValid,
+      true
+    )
+
+  render() {
+    const { section, title, formFields, setFieldValue } = this.props
+
+    return (
+      <>
+        <Subtitle section={section}>{title}</Subtitle>
+        <FieldsWrapper>
+          {formFields &&
+            formFields.map((field, index) => (
+              <Input
+                ref={this.inputRefs[index]}
+                section={section}
+                field={field}
+                onValue={value => {
+                  setFieldValue(field.fieldName, value)
+                }}
+              />
+            ))}
+        </FieldsWrapper>
+      </>
+    )
+  }
 }
+
+export default Form

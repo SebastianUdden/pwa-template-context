@@ -31,6 +31,7 @@ const EditField = ({ section, field, onValue }) => {
                   ...user,
                   [field.fieldName]: tempUser[field.fieldName],
                 })
+                localStorage.setItem(field.fieldName, tempUser[field.fieldName])
                 setShowInput(false)
               }}
             >

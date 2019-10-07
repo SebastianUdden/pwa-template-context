@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
 
   return (
     <UserProvider>
-      {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
+      <Header siteTitle={data.site.siteMetadata.title} />
       <Wrapper>
         <main>{children}</main>
       </Wrapper>

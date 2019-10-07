@@ -1,7 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { useUser } from "../../contexts/UserContext"
-import Input from "../ui/Input"
 import { Em, Button, Wrapper, ErrorMessage, FieldHint } from "./common"
+import Form from "../ui/Form"
+
+const checkValidValue = (user, tempUser, value) =>
+  tempUser[value] === user[value] ||
+  (!tempUser[value] && localStorage.getItem(value) === user[value])
 
 const Login = ({ fields }) => {
   const [invalidEntry, setInvalidEntry] = useState(false)
@@ -13,6 +17,7 @@ const Login = ({ fields }) => {
     clearTempUser,
     setPage,
   } = useUser()
+  const loginForm = useRef(null)
 
   return (
     <Wrapper>
@@ -38,27 +43,27 @@ const Login = ({ fields }) => {
       )}
       {!user.loggedIn && (
         <>
-          {fields.map(field => {
-            return (
-              <Input
-                section="login"
-                field={{
-                  ...field,
-                  value:
-                    field.fieldName !== "password" ||
-                    localStorage.getItem("auto-password") === "true"
-                      ? localStorage.getItem(field.fieldName)
-                      : "",
-                }}
-                onValue={value => setTempUser(field.fieldName, value)}
-              />
-            )
-          })}
+          <Form
+            ref={loginForm}
+            section="Login"
+            formFields={fields.map(field => ({
+              ...field,
+              value:
+                field.fieldName !== "password" ||
+                localStorage.getItem("auto-password") === "true"
+                  ? localStorage.getItem(field.fieldName)
+                  : "",
+            }))}
+            setFieldValue={setTempUser}
+          />
           <Button
             onClick={() => {
+              const validForm = loginForm.current.validate()
+
+              if (!validForm) return
               if (
-                tempUser.email === user.email &&
-                tempUser.password === user.password
+                checkValidValue(user, tempUser, "email") &&
+                checkValidValue(user, tempUser, "password")
               ) {
                 Object.keys(user).forEach(key => {
                   key !== "repeatPassword" &&

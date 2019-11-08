@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import ModalUI from "./ModalUI"
-import { Button, Span } from "../user/common"
+import { Text, TextButton, Modal as ModalUI } from "project-pillow-components"
 
 const Modal = ({ title, description, onConfirm, onDeny }) => {
   const [modalOpen, setModalOpen] = useState(true)
@@ -15,30 +14,32 @@ const Modal = ({ title, description, onConfirm, onDeny }) => {
           }}
           open={modalOpen}
         >
-          <Span>{description}</Span>
+          <Text>{description}</Text>
           <div
             style={{
               display: "flex",
               marginTop: "32px",
-              justifyContent: "center",
+              justifyContent: "flex-end",
             }}
           >
-            <Button
+            <TextButton
               onClick={() => {
                 setModalOpen(false)
                 onConfirm()
               }}
+              backgroundColorHover="#444444"
             >
               Yes
-            </Button>
-            <Button
+            </TextButton>
+            <TextButton
               onClick={() => {
                 setModalOpen(false)
                 onDeny()
               }}
+              backgroundColorHover="#444444"
             >
               No
-            </Button>
+            </TextButton>
           </div>
         </ModalUI>
       )}

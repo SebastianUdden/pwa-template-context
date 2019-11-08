@@ -1,9 +1,9 @@
 {
-  "name": "progressive-web-app",
+  "name": "project-pillow-progressive-web-app",
   "private": true,
   "description": "A PWA starter kit",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "version": "0.2.0",
+  "author": "Sebastian Uddén <sebastian.udden@gmail.com>",
   "dependencies": {
     "gatsby": "^2.15.19",
     "gatsby-image": "^2.2.20",
@@ -17,9 +17,13 @@
     "react": "^16.9.0",
     "react-dom": "^16.10.2",
     "react-helmet": "^5.2.1",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "project-pillow-components": "1.1.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
     "prettier": "^1.18.2"
   },
   "keywords": [
@@ -28,6 +32,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "babel-build": "babel src -d lib",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "gatsby develop -H 0.0.0.0",

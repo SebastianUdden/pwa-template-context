@@ -99,6 +99,7 @@ const Signup = ({ fields }) => {
           {signedUp && (
             <Modal
               title="Would you like to save your password locally?"
+              description="It's possible to remove the user to remove the saved password later."
               onConfirm={() => {
                 localStorage.setItem("auto-password", true)
                 setUser({ ...tempUser, password: "" })
